@@ -547,14 +547,14 @@ class OplogThread(threading.Thread):
                     cursor = retry_until_ok(
                         from_coll.find,
                         projection=projection,
-                        sort=[("_id", pymongo.ASCENDING)]
+                        sort=[("_id", pymongo.DESCENDING)]
                     )
                 else:
                     cursor = retry_until_ok(
                         from_coll.find,
                         {"_id": {"$gt": last_id}},
                         projection=projection,
-                        sort=[("_id", pymongo.ASCENDING)]
+                        sort=[("_id", pymongo.DESCENDING)]
                     )
                 try:
                     for doc in cursor:
